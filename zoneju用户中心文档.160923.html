@@ -1,0 +1,1497 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>用户接口文档</title>
+        <style>
+            * {
+                margin: 0px;
+                padding: 0px;
+                font-size: 12px;
+            }
+
+            .red {
+                color: #f00;
+            }
+
+            body {
+                min-width: 1000px;
+            }
+
+            .content {
+                background: #fff;
+                position: fixed;
+                right: 20px;
+                top: 20px;
+                _position: absolute;
+                _top: expression(offsetParent.scrollTop +20);
+                _left: expression(offsetParent.width);
+                z-index: 2000;
+                border: 1px solid #d7d7d7;
+                width: 200px;
+                padding-bottom: 10px;
+            }
+
+            .content .content-title h1 {
+                font-size: 14px;
+                height: 24px;
+                line-height: 24px;
+                padding-left: 10px;
+            }
+
+            .content .content-body {
+                padding-left: 20px;
+            }
+
+            .content .content-body li {
+                list-style: none;
+                height: 26px;
+                line-height: 26px;
+            }
+
+            .content .content-body li a {
+                font-size: 13px;
+                text-decoration: none;
+            }
+
+            .content .content-body li a:hover {
+                text-decoration: underline;
+            }
+
+            .box {
+                padding-left: 20px;
+                width: 80%;
+            }
+
+            .box-title {
+                font-size: 14px;
+                font-weight: bold;
+                color: #555;
+                height: 36px;
+                line-height: 36px;
+                border-bottom: 1px solid #d0dfed
+            }
+
+            .box-notice {
+                padding-bottom: 20px;
+            }
+
+            .notice-title {
+                height: 24px;
+                line-height: 24px;
+                font-size: 13px;
+                font-weight: bold;
+            }
+
+            .notice-body {
+                padding-left: 24px;
+                line-height:22px;
+            }
+
+            .notice-body li {
+                list-style-type: square;
+            }
+
+            .interface-title {
+                height: 34px;
+                line-height: 34px;
+                background: #f6faff;
+                border: 1px solid #becfdd;
+                color: #333;
+                padding-left: 10px;
+                font-size: 13px;
+                font-weight: bold;
+            }
+
+            .item-tt {
+                position: relative;
+                height: 30px;
+                line-height: 30px;
+                margin-top: 20px;
+            }
+
+            .item-tt span {
+                color: #0455CA;
+                font-size: 14px;
+                font-weight: bold;
+                background: #fff;
+                position: relative;
+                background: #fff;
+                z-index: 21;
+                padding: 0px 10px;
+            }
+
+            .item-tt span.line {
+                border-bottom: 1px dashed #666;
+                display: block;
+                position: relative;
+                top: -15px;
+                z-index: 20;
+            }
+
+            .item-bd {
+                padding-left: 30px;
+            }
+
+            .item-bd ul li {
+                list-style: none;
+                height: 24px;
+                line-height: 24px;
+            }
+
+            .item-lft,.item-rt {
+                float: left;
+                line-height: 24px;
+                margin: 10px 0px;
+            }
+
+            .item-lft {
+                clear: both;
+                width: 140px;
+                font-weight: bold;
+                text-align: right;
+            }
+
+            .item-rt {
+                margin-left: 20px;
+                width: 70%;
+                padding-left: 10px;
+            }
+
+            .code {
+                border: 1px dashed #999;
+                background: #fafafa;
+                color: #555;
+                font-family: "Courier New";
+                margin-left: 30px;
+                width: 69%
+            }
+
+            table {
+                border-collapse: collapse;
+                border: 1px solid #EDECEC;
+            }
+
+            table th,table td {
+                border: 1px solid #EDECEC
+            }
+
+            table th {
+                line-height: 30px;
+                background: #f8f8f8
+            }
+
+            table td {
+                line-height: 30px;
+                padding-left: 10px;
+            }
+
+            table tr.odd {
+                background: #fbfbfb
+            }
+
+            .interface-item {
+                clear: both;
+            }
+            .demolist li{float:left;margin:0px 10px;}
+        </style>
+
+    </head>
+
+    <body style="position:relative;">
+        <div class="content">
+            <div class="content-title">
+                <h1>目录</h1>
+            </div>
+            <ul class="content-body">
+                <li><a href="#gongzuo_fangshi">工作方式</a></li>
+                <li><a href="#zifu_bianma">字符编码</a></li>
+                <li><a href="#xiangying_geshi">响应格式</a></li>
+                <li><a href="#shuju_qianming">数据签名</a></li>
+                <li><a href="#pwdencrypt">密码加密</a></li>
+                <li><a href="#api_b1">取得用户信息</a></li>
+                <li><a href="#api_b2">注册用户</a></li>
+                <li><a href="#api_b3">修改用户资料</a></li>
+                <li><a href="#api_b4">绑定手机</a></li>
+                <li><a href="#api_b5">修改密码</a></li>
+                <li><a href="#api_b6">验证密码正确与否</a></li>
+                <li><a href="#api_b7">发送短信接口</a></li>
+                <li><a href="#api_b8">验证短信正确与否</a></li>
+                <li><a href="#api_b9">取得QQ登录和绑定URL</a></li>
+                <li><a href="#api_b10">取得wechat登录和绑定URL</a></li>
+                <li><a href="#api_b11">用户登录接口</a></li>
+                <li><a href="#api_b12">取得用户中心在线用户</a></li>
+                <li><a href="#api_b13">已登录用户登出</a></li>
+                <li><a href="#api_b14">hmac接口</a></li>
+                <li><a href="#api_b15">取得上传头像URL接口</a></li>
+                <li><a href="#p8">开发demo</a></li>
+            </ul>
+        </div>
+        <div class="box">
+            <div class="box-title">SNQU用户中心接口文档-V2.0</div>
+            <div class="box-notice">
+                <div class="red notice-title">更新通知</div>
+                <ul class="notice-body">
+                    <li>2016.09.01 更新接口文档v2.0版本，添加工作方式、字符编码、响应格式、状态码说明、等功能</li>
+                </ul>
+            </div>
+            <div class="interface">
+                <div class="interface-title">用户中心接口</div>
+                <div class="interface-item">
+                    <div class="item-tt" id="gongzuo_fangshi">
+                        <span>工作方式</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <ul>
+                            <li>双方通过HTTP方式交互数据，第三方可以简单的“name=value”方式发送提交内容或响应请求内容。即通过HTTP的GET/POST/PUT/DELETE方式交换。</li>
+                            <li>此API第2版所有访问者需要提供客户端ID与APIKEY对url与数据进行签名，<span class="red notice-title">访问API所有链接均需带上cid(客户端ID)和s(URL签名)</span>，保证数据的安全性。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="interface-item">
+                    <div class="item-tt" id="zifu_bianma">
+                        <span>字符编码</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <ul>
+                            <li>服务器接收数据可以是UTF-8编码字符。</li>
+                            <li>请求响应返回内容是UTF-8编码。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="interface-item">
+                    <div class="item-tt" id="xiangying_geshi">
+                        <span>响应格式</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <ul>
+                            <li>所为响应即每次向服务器提交请求后返回值</li>
+                            <li>响应由两部分组成，HTTP状态码和响应内容部分</li>
+                            <li>HTTP状态码常见有三种：200表示处理成功、422表示效验未通过、403表示没有权限、302表示跳转访问</li>
+                            <li>响应值格式为纯JSON文本，可能为字符串描述全局错误，可能为JSON对象描述字段错误信息，也可能为正确情况下返回的数据</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="interface-item">
+                    <div class="item-tt" id="shuju_qianming">
+                        <span>数据签名</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <ul>
+                            <li>数据签名统一使用v3框架中的v\ext\UrlSign类进行签名</li>
+                            <li>GET/DELETE方式对URL进行签名，POST/PUT方式需要对URL和内容进行签名</li>
+                            <li>签名结果参数 s=签名 放到请求的URL后</li>
+                            <li>签名算法：</li>
+                            <li>1.从用户中心管理员处申请签名的密钥$key，如123456</li>
+                            <li>2.准备要签名的数据$url，GET/DELETE为带http头的URL，POST/PUT方法需要把数据转换成URL参数附加在原URL后组成一个新的正确的URL数据</li>
+                            <li>3.取得当前unix时间戳$time，请注意和服务器时间保持一致，服务器时间为误差在毫秒的标准时间。</li>
+                            <li>4.算法：$r1 = md5($key + $url + $time)；$r2 = $r1从0位开始计算取第8位开始的16个字符；签名结果$r = $r2 + $time</li>
+                            <li>效验签名算法：</li>
+                            <li>1.把签名从第16位开始分割成签名$sign与时间$time</li>
+                            <li>2.根据$time效验该签名时间是否过期</li>
+                            <li>3.判断对当前URL用密钥和时间$time签名后与原签名是否一致</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="interface-item">
+                    <div class="item-tt" id="pwdencrypt">
+                        <span>密码加密</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <ul>
+                            <li>密码在客户端提交前通过加密字符串加密后传输</li>
+                            <li>现有加密算法: md5(hmac + md5(username + '' + password));</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="interface-item">
+                        <span>客户系统cid与key</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <ul>
+                            <li>客户系统访问所有接口都需要带上令牌</li>
+                            <li>令牌参数为 cid=令牌，拼接在URL之后</li>
+                            <li>有些只能由客户系访问的接口，还需要key对URL与数据进行签名</li>
+                            <li>需要客户系统ID与签名的接口中会做参数说明</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 短信验证码 -->
+                <div class="interface-item">
+                    <div class="item-tt" id="api_b1">
+                      <span>取得对应手机号/用户名的用户</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <div class="item-lft">功能</div>
+                        <div class="item-rt">取得用户信息</div>
+                        <div class="item-lft">HTTP请求方式</div>
+                        <div class="item-rt">GET</div>
+                        <div class="item-lft">请求URL</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/members.json</div>
+                        <div class="item-lft">请求参数</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">参数名称</th>
+                                    <th width="20%">类型</th>
+                                    <th width="20%">是否必须</th>
+                                    <th width="40%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>username/mobile</td>
+                                    <td>用户名/11位手机号码</td>
+                                    <td>是</td>
+                                    <td><p>用户名（）</p>
+                                    <p>手机号码（注册时绑定的手机号码）</p></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">返回结果</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">HTTP状态</th>
+                                    <th width="30%">内容类型</th>
+                                    <th width="50%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>200</td>
+                                    <td>String</td>
+                                    <td>HTTP状态为200时表示发送成功，无内容返回</td>
+                                </tr>
+                                <tr>
+                                    <td>404</td>
+                                    <td>String | Json</td>
+                                    <td>HTTP状态404表示未找到用户，返回错误信息</td>
+                                </tr>
+                                <tr>
+                                    <td>422</td>
+                                    <td>String | Json</td>
+                                    <td>HTTP状态为422时表示发送失败，返回错误信息</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">请求示例</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/members.json</div>
+                        <div class="item-lft">请求数据</div>
+                        <pre class="item-rt code">
+{
+	"status": "success",
+	"data":{"用户信息......"}
+}
+                        </pre>
+                    </div>
+                </div>
+                <!-- 邮箱验证码 -->
+                <div class="interface-item">
+                    <div class="item-tt" id="api_b2">
+                        <span>注册用户</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <div class="item-lft">功能</div>
+                        <div class="item-rt">注册用户，可以用户名注册，手机注册或第三方QQ微信注册</div>
+                        <div class="item-lft">HTTP请求方式</div>
+                        <div class="item-rt">POST</div>
+                        <div class="item-lft">请求URL</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/members.json</div>
+                        <div class="item-lft">请求参数（用户名注册）</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">参数名称</th>
+                                    <th width="20%">类型</th>
+                                    <th width="20%">是否必须</th>
+                                    <th width="40%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>uername</td>
+                                    <td>用户名</td>
+                                    <td>是</td>
+                                    <td>用户名</td>
+                                </tr>
+                                <tr>
+                                  <td>password</td>
+                                  <td>密码</td>
+                                  <td>是</td>
+                                  <td>密码</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">请求参数（手机注册）</div>
+                      <div class="item-rt">
+                          <table width="100%">
+                            <tr>
+                              <th width="20%">参数名称</th>
+                              <th width="20%">类型</th>
+                              <th width="20%">是否必须</th>
+                              <th width="40%">描述</th>
+                            </tr>
+                            <tr>
+                              <td>mobile</td>
+                              <td>手机</td>
+                              <td>是</td>
+                              <td>11位手机号码</td>
+                            </tr>
+                            <tr>
+                              <td>password</td>
+                              <td>密码</td>
+                              <td>是</td>
+                              <td>密码</td>
+                            </tr>
+                            <tr>
+                              <td>captcha</td>
+                              <td>短信验证码</td>
+                              <td>是</td>
+                              <td>验证码</td>
+                            </tr>
+                          </table>
+                        </div>
+                        <div class="item-lft">请求参数（三方注册））</div>
+                        <div class="item-rt">
+                          <table width="100%">
+                            <tr>
+                              <th width="20%">参数名称</th>
+                              <th width="20%">类型</th>
+                              <th width="20%">是否必须</th>
+                              <th width="40%">描述</th>
+                            </tr>
+                            <tr>
+                              <td>qqid/wechatid</td>
+                              <td>openid/unionid</td>
+                              <td>是</td>
+                              <td>QQ openid或 Wecaht unionid</td>
+                            </tr>
+                            <tr>
+                              <td>qq_access_token/wechat_access_token</td>
+                              <td>access_token</td>
+                              <td>是</td>
+                              <td>QQ或微信的 access_token</td>
+                            </tr>
+                            <tr>
+                              <td>sex</td>
+                              <td>性别</td>
+                              <td>是</td>
+                              <td>1：男2：女</td>
+                            </tr>
+                            <tr>
+                              <td>avatar</td>
+                              <td>头像</td>
+                              <td>是</td>
+                              <td>QQ或微信头像</td>
+                            </tr>
+                            <tr>
+                              <td>nickname</td>
+                              <td>昵称</td>
+                              <td>是</td>
+                              <td>QQ或微信昵称 </td>
+                            </tr>
+                          </table>
+                        </div>
+                        <p>&nbsp;</p>
+                        <div class="item-lft">返回结果</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">HTTP状态</th>
+                                    <th width="30%">内容类型</th>
+                                    <th width="50%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>200</td>
+                                    <td>String</td>
+                                    <td>HTTP状态为200时表示发送成功，无内容返回</td>
+                                </tr>
+                                <tr>
+                                    <td>422</td>
+                                    <td>String | Json</td>
+                                    <td>HTTP状态为422时表示发送失败，返回错误信息</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">请求示例</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/members.json</div>
+                        <div class="item-lft">请求数据</div>
+                        <pre class="item-rt code">
+{
+	"status":"success",
+    "data":{"注册用户信息......"}
+}
+                        </pre>
+                    </div>
+                </div>
+                <!-- 用户登录 -->
+                <div class="interface-item">
+                    <div class="item-tt" id="api_b3">
+                        <span>修改用户基本资料</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <div class="item-lft">功能</div>
+                        <div class="item-rt">
+                            修改用户基本资料</div>
+                        <div class="item-lft">HTTP请求方式</div>
+                        <div class="item-rt">PUT</div>
+                        <div class="item-lft">请求URL</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/members.json</div>
+                        <div class="item-lft">请求参数</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">参数名称</th>
+                                    <th width="20%">类型</th>
+                                    <th width="20%">是否必须</th>
+                                    <th width="40%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>username</td>
+                                    <td>用户名</td>
+                                    <td>是</td>
+                                    <td>用户名</td>
+                                </tr>
+                                <tr class="odd">
+                                    <td>nickname</td>
+                                    <td>昵称</td>
+                                    <td>否</td>
+                                    <td>用户昵称</td>
+                                </tr>
+                                <tr>
+                                    <td>sex</td>
+                                    <td>性别</td>
+                                    <td>否</td>
+                                    <td>性别 1:男 2:女</td>
+                                </tr>
+                                <tr>
+                                    <td>age</td>
+                                    <td>年龄</td>
+                                    <td>否</td>
+                                    <td>年龄14-99</td>
+                                </tr>
+                                <tr>
+                                    <td>reusername</td>
+                                    <td>用户名</td>
+                                    <td>否</td>
+                                    <td>修改后的用户名，utemp开头的用户允许修改</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">返回结果</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">HTTP状态</th>
+                                    <th width="30%">内容类型</th>
+                                    <th width="50%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>200</td>
+                                    <td>String</td>
+                                    <td>HTTP状态为200时表示发送成功，返回数据</td>
+                                </tr>
+                                <tr>
+                                    <td>422</td>
+                                    <td>String | Json</td>
+                                    <td>HTTP状态为422时表示发送失败，返回错误信息</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">请求示例</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/members.json</div>
+                        <div class="item-lft">请求数据</div>
+                        <pre class="item-rt code">
+{
+	"status":"success",
+    "data":{"修改后的用户信息......"}
+}
+                        </pre>
+
+                    </div>
+                </div>
+
+                <!-- token登录 -->
+                <div class="interface-item">
+                    <div class="item-tt" id="api_b4">
+                        <span>绑定手机</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <div class="item-lft">功能</div>
+                        <div class="item-rt">
+                            绑定帐号到手机</div>
+                        <div class="item-lft">HTTP请求方式</div>
+                        <div class="item-rt">POST</div>
+                        <div class="item-lft">请求URL</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/mobiles.json</div>
+                        <div class="item-lft">请求参数</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">参数名称</th>
+                                    <th width="20%">类型</th>
+                                    <th width="20%">是否必须</th>
+                                    <th width="40%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>mobile</td>
+                                    <td>手机</td>
+                                    <td>是</td>
+                                    <td>11位手机号</td>
+                                </tr>
+                                <tr class="odd">
+                                    <td>username</td>
+                                    <td>用户名</td>
+                                    <td>是</td>
+                                    <td>需要绑定的用户名</td>
+                                </tr>
+                                <tr>
+                                    <td>captcha</td>
+                                    <td>短信验证码</td>
+                                    <td>是</td>
+                                    <td>短信验证码6位</td>
+                                </tr>
+                                <tr>
+                                    <td>password</td>
+                                    <td>密码</td>
+                                    <td>是</td>
+                                    <td>hmac加密后的密码</td>
+                                </tr>
+                                <tr>
+                                    <td>hmackey</td>
+                                    <td>hmac</td>
+                                    <td>是</td>
+                                    <td>密码加密字符串</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">返回结果</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">HTTP状态</th>
+                                    <th width="30%">内容类型</th>
+                                    <th width="50%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>200</td>
+                                    <td>String</td>
+                                    <td>HTTP状态为200时表示发送成功，返回数据</td>
+                                </tr>
+                                <tr class="odd">
+                                    <td>422</td>
+                                    <td>String | Json</td>
+                                    <td>HTTP状态为422时表示发送失败，返回错误信息</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">请求示例</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/mobiles.json</div>
+                        <div class="item-lft">请求数据</div>
+                        <pre class="item-rt code">
+{
+	"status":"success",
+    "data":{
+    	"username":....
+        "mobile":.....
+    }
+}
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- 第三方登录 -->
+                <div class="interface-item">
+                    <div class="item-tt" id="api_b5">
+                        <span>修改密码</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <div class="item-lft">功能</div>
+                        <div class="item-rt">
+                            修改密码</div>
+                        <div class="item-lft">HTTP请求方式</div>
+                        <div class="item-rt">POST</div>
+                        <div class="item-lft">请求URL</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/passwords.json</div>
+                        <div class="item-lft">请求参数</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">参数名称</th>
+                                    <th width="20%">类型</th>
+                                    <th width="20%">是否必须</th>
+                                    <th width="40%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>password</td>
+                                    <td>密码</td>
+                                    <td>是</td>
+                                    <td>修改后的密码</td>
+                                </tr>
+                                <tr>
+                                    <td>mobile</td>
+                                    <td>手机</td>
+                                    <td>是</td>
+                                    <td>帐号绑定的手机</td>
+                                </tr>
+                                <tr>
+                                    <td>username</td>
+                                    <td>用户名</td>
+                                    <td>是</td>
+                                    <td>需要修改密码的用户名</td>
+                                </tr>                                <tr>
+                                    <td>captcha</td>
+                                    <td>验证码</td>
+                                    <td>是</td>
+                                    <td>短信验证码</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">返回结果</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">HTTP状态</th>
+                                    <th width="30%">内容类型</th>
+                                    <th width="50%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>200</td>
+                                    <td>Json</td>
+                                    <td>HTTP状态为200时表示发送成功，返回结果</td>
+                                </tr>
+                                <tr class="odd">
+                                    <td>422</td>
+                                    <td>Json</td>
+                                    <td>HTTP状态为422时表示发送失败，返回错误信息</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">请求示例</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/passwords.json</div>
+                        <div class="item-lft">请求数据</div>
+                        <pre class="item-rt code">
+{
+	"status":"success",
+    "data":{
+    	"username":....
+        "mobile":.....
+    }
+}
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- 用户登出 -->
+                <div class="interface-item">
+                    <div class="item-tt" id="api_b6">
+                        <span>验证密码是否正确</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <div class="item-lft">功能</div>
+                        <div class="item-rt">
+                            验证密码正确与否</div>
+                        <div class="item-lft">HTTP请求方式</div>
+                        <div class="item-rt">GET</div>
+                        <div class="item-lft">请求URL</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/passwords.json</div>
+                        <div class="item-lft">请求参数</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">参数名称</th>
+                                    <th width="20%">类型</th>
+                                    <th width="20%">是否必须</th>
+                                    <th width="40%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>password</td>
+                                    <td>密码</td>
+                                    <td>是</td>
+                                    <td>hmac加密后的密码</td>
+                                </tr>
+                                <tr>
+                                    <td>hmackey</td>
+                                    <td>hmac</td>
+                                    <td>是</td>
+                                    <td>hmac加密字符串</td>
+                                <tr>
+                                    <td>username/mobile</td>
+                                    <td>用户名或手机</td>
+                                    <td>是</td>
+                                    <td>用户名或绑定的手机号</td>
+                                </tr>                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">返回结果</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">HTTP状态</th>
+                                    <th width="30%">内容类型</th>
+                                    <th width="50%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>200</td>
+                                    <td>Json</td>
+                                    <td>HTTP状态为200时表示发送成功，返回结果。</td>
+                                </tr>
+                                <tr class="odd">
+                                    <td>422</td>
+                                    <td>Json</td>
+                                    <td>HTTP状态为422时表示发送失败，返回错误信息</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">请求示例</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/passwords.json</div>
+                        <div class="item-lft">请求数据</div>
+                        <pre class="item-rt code">
+{
+	"status":"success",
+    "data":{
+    	"username":....
+    }
+}
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- 用户注册 -->
+                <div class="interface-item">
+                    <div class="item-tt" id="api_b7">
+                        <span>发送短信接口</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <div class="item-lft">功能</div>
+                        <div class="item-rt">
+                            发送短信</div>
+                        <div class="item-lft">HTTP请求方式</div>
+                        <div class="item-rt">POST</div>
+                        <div class="item-lft">请求URL</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/smscaptcha.json</div>
+                        <div class="item-lft">请求参数</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">参数名称</th>
+                                    <th width="20%">类型</th>
+                                    <th width="20%">是否必须</th>
+                                    <th width="40%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>mobile</td>
+                                    <td>手机</td>
+                                    <td>是</td>
+                                    <td>接收短信的手机</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">返回结果</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">HTTP状态</th>
+                                    <th width="30%">内容类型</th>
+                                    <th width="50%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>200</td>
+                                    <td>Json</td>
+                                    <td>HTTP状态为200时表示发送成功，返回结果</td>
+                                </tr>
+                                <tr class="odd">
+                                    <td>422</td>
+                                    <td>Json</td>
+                                    <td>HTTP状态为422时表示发送失败，返回错误信息</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">请求示例</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/smscaptcha.json</div>
+                        <div class="item-lft">请求数据</div>
+                        <pre class="item-rt code">
+{
+	"status":"success",
+    "data":{
+    	"captcha":....
+    }
+}
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- 同步登录用户 -->
+                <div class="interface-item">
+                    <div class="item-tt" id="api_b8">
+                        <span>验证短信是否正确</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <div class="item-lft">功能</div>
+                        <div class="item-rt">
+                            验证短信正确与否</div>
+                        <div class="item-lft">HTTP请求方式</div>
+                        <div class="item-rt">GET</div>
+                        <div class="item-lft">请求URL</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/smscaptcha.json</div>
+                        <div class="item-lft">请求参数</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">参数名称</th>
+                                    <th width="20%">类型</th>
+                                    <th width="20%">是否必须</th>
+                                    <th width="40%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>mobile</td>
+                                    <td>手机</td>
+                                    <td>是</td>
+                                    <td>接收短信的手机</td>
+                                </tr>
+                                <tr class="odd">
+                                    <td>captcha</td>
+                                    <td>验证码</td>
+                                    <td>是</td>
+                                    <td>短信验证码</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">返回结果</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">HTTP状态</th>
+                                    <th width="30%">内容类型</th>
+                                    <th width="50%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>200</td>
+                                    <td>Json</td>
+                                    <td>HTTP状态为200时表示发送成功,返回结果</td>
+                                </tr>
+                                <tr class="odd">
+                                    <td>422</td>
+                                    <td>Json</td>
+                                    <td>HTTP状态为422时表示发送失败，返回错误信息</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">请求示例</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/smscaptcha.json</div>
+                        <div class="item-lft">请求数据</div>
+                        <pre class="item-rt code">
+{
+	"status":"success",
+    "data":{
+    	"mobile":....
+    }
+}
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- 修改用户密码 -->
+                <div class="interface-item">
+                    <div class="item-tt" id="api_b9">
+                        <span>取得QQ登陆/绑定URL</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <div class="item-lft">功能</div>
+                        <div class="item-rt">
+                            取得QQ登陆/绑定URL</div>
+                        <div class="item-lft">HTTP请求方式</div>
+                        <div class="item-rt">GET</div>
+                        <div class="item-lft">请求URL</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/qq.json</div>
+                        <div class="item-lft">请求参数</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">参数名称</th>
+                                    <th width="20%">类型</th>
+                                    <th width="20%">是否必须</th>
+                                    <th width="40%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>mtd</td>
+                                    <td>方法</td>
+                                    <td>是</td>
+                                    <td>login(取得QQ login URL)/bind(取得QQ bind URL)</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">返回结果</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">HTTP状态</th>
+                                    <th width="30%">内容类型</th>
+                                    <th width="50%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>200</td>
+                                    <td>String | Json</td>
+                                    <td>HTTP状态为200时表示发送成功，返回结果</td>
+                                </tr>
+                                <tr class="odd">
+                                    <td>422</td>
+                                    <td>String | Json</td>
+                                    <td>HTTP状态为422时表示发送失败，返回错误信息</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">请求示例</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/qq.json</div>
+                        <div class="item-lft">请求数据</div>
+                        <pre class="item-rt code">
+{
+	"status":"success",
+    "data":{
+    	"qq_url":....
+    }
+}
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- 验证用户是否存在 -->
+                <div class="interface-item">
+                    <div class="item-tt" id="api_b10">
+                        <span>取得微信登录/绑定URL</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <div class="item-lft">功能</div>
+                        <div class="item-rt">
+                            取得微信登录/绑定URL</div>
+                        <div class="item-lft">HTTP请求方式</div>
+                        <div class="item-rt">GET</div>
+                        <div class="item-lft">请求URL</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/wechat.json</div>
+                        <div class="item-lft">请求参数</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">参数名称</th>
+                                    <th width="20%">类型</th>
+                                    <th width="20%">是否必须</th>
+                                    <th width="40%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>mth</td>
+                                    <td>方法</td>
+                                    <td>是</td>
+                                    <td>login(取得微信 login URL)/bind(取得微信 bind URL)</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">返回结果</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">HTTP状态</th>
+                                    <th width="30%">内容类型</th>
+                                    <th width="50%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>200</td>
+                                    <td>String | Json</td>
+                                    <td>HTTP状态为200时表示发送成功,返回用户名</td>
+                                </tr>
+                                <tr class="odd">
+                                    <td>422</td>
+                                    <td>String | Json</td>
+                                    <td>HTTP状态为422时表示发送失败</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">请求示例</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/wechat.json</div>
+                        <div class="item-lft">请求数据</div>
+                        <pre class="item-rt code">
+{
+	"status":"success",
+    "data":{
+    	"wechat_url":....
+    }
+}
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- 验证用户手机号存在与否 -->
+                <div class="interface-item">
+                    <div class="item-tt" id="api_b11">
+                        <span>用户登录接口</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <div class="item-lft">功能</div>
+                        <div class="item-rt">
+                            验证用户登录凭证接口，返回token凭证</div>
+                        <div class="item-lft">HTTP请求方式</div>
+                        <div class="item-rt">POST</div>
+                        <div class="item-lft">请求URL</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/loggings.json</div>
+                        <div class="item-lft">用户名密码登录参数</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">参数名称</th>
+                                    <th width="20%">类型</th>
+                                    <th width="20%">是否必须</th>
+                                    <th width="40%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>username/mobile</td>
+                                    <td>用户名/手机</td>
+                                    <td>是</td>
+                                    <td>用户名或已绑定的手机</td>
+                                </tr>
+                                <tr>
+                                    <td>password</td>
+                                    <td>密码</td>
+                                    <td>是</td>
+                                    <td>hmac加密后的密码</td>
+                                </tr>                                <tr>
+                                    <td>hmackey</td>
+                                    <td>hmac</td>
+                                    <td>是</td>
+                                    <td>hmac加密字符串</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">验证码登录参数</div>
+                        <div class="item-rt">
+                          <table width="100%">
+                                <tr>
+                                    <th width="20%">参数名称</th>
+                                    <th width="20%">类型</th>
+                                    <th width="20%">是否必须</th>
+                                    <th width="40%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>mobile</td>
+                                    <td>手机号</td>
+                                    <td>是</td>
+                                    <td>已绑定的手机号</td>
+                                </tr>
+                                <tr>
+                                    <td>captcha</td>
+                                    <td>验证码</td>
+                                    <td>是</td>
+                                    <td>短信验证码</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">返回结果</div>
+                      <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">HTTP状态</th>
+                                    <th width="30%">内容类型</th>
+                                    <th width="50%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>200</td>
+                                    <td>Json</td>
+                                    <td>HTTP状态为200时表示发送成功，返回结果</td>
+                                </tr>
+                                <tr class="odd">
+                                    <td>422</td>
+                                    <td>Json</td>
+                                    <td>HTTP状态为422时表示发送失败,返回错误信息</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">请求示例</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/loggings.json</div>
+                        <div class="item-lft">请求数据</div>
+                        <pre class="item-rt code">
+{
+	"status":"success",
+    "data":{
+    	"username":....
+		&quot;mid&quot;:....
+		&quot;token&quot;:登录token凭证
+    }
+}
+                        </pre>
+                  </div>
+                </div>
+
+                <!-- 验证用户密码是否正确 -->
+                <div class="interface-item">
+                    <div class="item-tt" id="api_b12">
+                        <span>取得在线用户</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <div class="item-lft">功能</div>
+                        <div class="item-rt">
+                      取得在线用户信息</div>
+                        <div class="item-lft">HTTP请求方式</div>
+                        <div class="item-rt">GET</div>
+                        <div class="item-lft">请求URL</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/loggings.json</div>
+                        <div class="item-lft">请求参数</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">参数名称</th>
+                                    <th width="20%">类型</th>
+                                    <th width="20%">是否必须</th>
+                                    <th width="40%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>无</td>
+                                    <td>无</td>
+                                    <td>无</td>
+                                    <td>无</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <div class="item-lft">返回结果</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">HTTP状态</th>
+                                    <th width="30%">内容类型</th>
+                                    <th width="50%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>200</td>
+                                    <td>Json</td>
+                                    <td>HTTP状态为200时表示发送成功，返回验证结果</td>
+                                </tr>
+                                <tr class="odd">
+                                    <td>422</td>
+                                    <td>Json</td>
+                                    <td>HTTP状态为422时表示发送失败，返回错误消息</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">请求示例</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/loggings.json</div>
+                        <div class="item-lft">请求数据</div>
+                        <pre class="item-rt code">
+{
+	"status":"success",
+    "data":{
+    	"login_user_url": 用户中心在线用户URL
+    }
+}
+                        </pre>
+                    </div>
+                </div>
+<!-- 需登录状态才能使用的api -->
+
+                <!-- 已登录用户登出 -->
+                <div class="interface-item">
+                    <div class="item-tt" id="api_b13">
+                        <span>退出在线用户</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <div class="item-lft">功能</div>
+                        <div class="item-rt">
+                      用户退出</div>
+                        <div class="item-lft">HTTP请求方式</div>
+                        <div class="item-rt">DELETE</div>
+                        <div class="item-lft">请求URL</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/loggings.json</div>
+                        <div class="item-lft">请求参数</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">参数名称</th>
+                                    <th width="20%">类型</th>
+                                    <th width="20%">是否必须</th>
+                                    <th width="40%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>无</td>
+                                    <td>无</td>
+                                    <td>无</td>
+                                    <td>无</td>
+                                </tr>
+                          </table>
+                        </div>
+                        <div class="item-lft">返回结果</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">HTTP状态</th>
+                                    <th width="30%">内容类型</th>
+                                    <th width="50%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>200</td>
+                                    <td>String | Json</td>
+                                    <td>HTTP状态为200时表示发送成功，跳转页面</td>
+                                </tr>
+                                <tr class="odd">
+                                    <td>422</td>
+                                    <td>String | Json</td>
+                                    <td>HTTP状态为422时表示发送失败，返回错误消息</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">请求示例</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/loggings.json</div>
+                        <div class="item-lft">请求数据</div>
+                        <pre class="item-rt code">
+{
+	"status":"success",
+    "data":{
+    	"logout_url": 退出用户中心URL
+    }
+}
+                        </pre>
+                  </div>
+                </div>
+
+                <!-- 登录用户修改资料 -->
+                <div class="interface-item">
+                    <div class="item-tt" id="api_b14">
+                        <span>取得hmac接口</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <div class="item-lft">功能</div>
+                        <div class="item-rt">
+                      密码加密字符串hmac</div>
+                        <div class="item-lft">HTTP请求方式</div>
+                        <div class="item-rt">GET</div>
+                        <div class="item-lft">请求URL</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/hmac.json</div>
+                        <div class="item-lft">请求参数</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">参数名称</th>
+                                    <th width="20%">类型</th>
+                                    <th width="20%">是否必须</th>
+                                    <th width="40%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>username</td>
+                                    <td>用户名</td>
+                                    <td>是</td>
+                                    <td>需要取得hmac的用户名</td>
+                                </tr>
+
+                          </table>
+                        </div>
+                        <div class="item-lft">返回结果</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">HTTP状态</th>
+                                    <th width="30%">内容类型</th>
+                                    <th width="50%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>200</td>
+                                    <td>String | Json</td>
+                                    <td>HTTP状态为200时表示发送成功，返回跳转连接</td>
+                                </tr>
+                                <tr class="odd">
+                                    <td>422</td>
+                                    <td>String | Json</td>
+                                    <td>HTTP状态为422时表示发送失败，返回错误消息</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">请求示例</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/hmac.json</div>
+                        <div class="item-lft">请求数据</div>
+                        <pre class="item-rt code">
+{
+	"status":"success",
+    "data":{
+    	"key":hmac
+        "username": username
+    }
+}
+                        </pre>
+                  </div>
+                </div>
+
+                <!-- 登录用户修改密码 -->
+                <div class="interface-item">
+                    <div class="item-tt" id="api_b15">
+                        <span>取得头像上传和修改URL接口</span> <span class="line"></span>
+                    </div>
+                  <div class="item-bd">
+                        <div class="item-lft">功能</div>
+                        <div class="item-rt">
+                      取得头像上传和修改URL接口</div>
+                        <div class="item-lft">HTTP请求方式</div>
+                        <div class="item-rt">GET</div>
+                        <div class="item-lft">请求URL</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/avatars.json</div>
+                        <div class="item-lft">请求参数</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">参数名称</th>
+                                    <th width="20%">类型</th>
+                                    <th width="20%">是否必须</th>
+                                    <th width="40%">描述</th>
+                                </tr>
+                                <tr>
+                                  <td>无</td>
+                                  <td>无</td>
+                                  <td>无</td>
+                                  <td>无</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">返回结果</div>
+                        <div class="item-rt">
+                            <table width="100%">
+                                <tr>
+                                    <th width="20%">HTTP状态</th>
+                                    <th width="30%">内容类型</th>
+                                    <th width="50%">描述</th>
+                                </tr>
+                                <tr>
+                                    <td>200</td>
+                                    <td>String | Json</td>
+                                    <td>HTTP状态为200时表示发送成功，返回存储路径</td>
+                                </tr>
+                                <tr class="odd">
+                                    <td>422</td>
+                                    <td>String | Json</td>
+                                    <td>HTTP状态为422时表示发送失败，返回错误消息</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="item-lft">请求示例</div>
+                        <div class="item-rt code">http://api.zoneju.com/member/avatars.json</div>
+                    <div class="item-lft">请求数据</div>
+                      <pre class="item-rt code">
+{
+	"status":"success",
+    "data":{
+    	"key":hmac
+        "avatar_url": 用户中心头像上传和修改URL
+    }
+}
+                        </pre>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="interface-item">
+                    <div class="item-tt" id="p8">
+                        <span>开发demo</span> <span class="line"></span>
+                    </div>
+                    <div class="item-bd">
+                        <ul class="demolist">
+                            <li>java demo:<a href="http://i.snqu.com/JavaDemo.zip">点击下载</a></li>
+                            <li>c# demo:<a href="http://i.snqu.com/CSharpDemo.zip">点击下载</a></li>
+                            <li>php demo:<a href="http://i.snqu.com/PhpDemo.zip">点击下载</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="clear:both;margin-bottom:20px;"></div>
+            </div>
+        </div>
+    </body>
+</html>
